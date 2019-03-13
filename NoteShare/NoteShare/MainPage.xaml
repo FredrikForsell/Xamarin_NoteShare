@@ -48,99 +48,123 @@
                                    AutoFitMode="Height"
                                    ItemsSource="{Binding notes}"
                                    ItemTapped="SfListVIew_OnTapped"
+                                   AllowSwiping="True"
                                    >
-                <syncfusion:SfListView.ItemTemplate>
-                    <DataTemplate>
-
-                        <ViewCell>
+              
+              <!--Setting up leftswipe-->
+              <syncfusion:SfListView.LeftSwipeTemplate>
+                <DataTemplate>
+                  <ViewCell>
+                    <ContentView>
+                      <Frame>
+                        <Grid>
+                          <Grid Grid.Column ="0">
                             
-                            <ContentView>
+                            <Image Source ="uploadPic.png" />
+                           
+                          </Grid>
+                        </Grid>
+                      </Frame>
+                    </ContentView>
+                  </ViewCell>
+                </DataTemplate>
+              </syncfusion:SfListView.LeftSwipeTemplate>
 
-                                <Frame>
-                                    <!-- Frame with corners-->
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100" />
-                                            <ColumnDefinition Width="300" />
-                                        </Grid.ColumnDefinitions>
+              
+              
+              <!--Setting up NoteItems-->
+              <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate>
 
-                                        
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="50"/>
-                                            <RowDefinition Height="50"/>
-                                        </Grid.RowDefinitions>
+                  <ViewCell>
 
-                                        
-                                        <!-- Row:0      Column:0 and 1-->
-                                        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
-                                            
-                                            <controls:CircleImage Source="{Binding Icon}" />
-                                            
-                                        </Grid>
+                    <ContentView>
 
-                                        
-                                        <!-- Row:0      Column:1-->
-                                        <Grid Grid.Column="1" Grid.Row="0" Padding="5,0,0,0">
-                                            
-                                            <Label Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="White"/>
-                                            
-                                        </Grid>
+                      <Frame>
+                        <!-- Frame with corners-->
+                        <Grid>
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="300" />
+                          </Grid.ColumnDefinitions>
 
 
-                                        <!-- Row:1      Column:1-->
-                                        <Grid Grid.Column="1" Grid.Row="1" Padding="5,0,0,0">
-                                            
-                                            <Label Text="{Binding Description}" FontSize="Small" TextColor="White" />
-                                            
-                                        </Grid>
+                          <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                          </Grid.RowDefinitions>
 
 
-                                        
-                                        
-                                        
-                                        
-                                        <!-- Content dropdown layout -->
+                          <!-- Row:0      Column:0 and 1-->
+                          <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
+
+                            <controls:CircleImage Source="{Binding Icon}" />
+
+                          </Grid>
+
+
+                          <!-- Row:0      Column:1-->
+                          <Grid Grid.Column="1" Grid.Row="0" Padding="5,0,0,0">
+
+                            <Label Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="White"/>
+
+                          </Grid>
+
+
+                          <!-- Row:1      Column:1-->
+                          <Grid Grid.Column="1" Grid.Row="1" Padding="5,0,0,0">
+
+                            <Label Text="{Binding Description}" FontSize="Small" TextColor="White" />
+
+                          </Grid>
 
 
 
 
-                                        <StackLayout Grid.Row="2"
-                                                     Grid.ColumnSpan="3"
+
+
+                          <!-- Content dropdown layout -->
+
+
+
+
+                          <StackLayout Grid.Row="2"
+                                       Grid.ColumnSpan="3"
                                                      
-                                                     IsVisible="{Binding Content_isVisible}">
+                                       IsVisible="{Binding Content_isVisible}">
 
-                                            <Grid>
-                                                <Editor TextColor="White" 
-                                                        AutoSize="TextChanges"
-                                                        Text="lalasldas la slkd laskdlka lskadjas ldkasld aslkd askd alsd lsa
+                            <Grid>
+                              <Editor TextColor="White"
+                                      AutoSize="TextChanges"
+                                      Text="lalasldas la slkd laskdlka lskadjas ldkasld aslkd askd alsd lsa
                                                        sadjk jksadj askdaskjdjkas jjaskd jasjkdj askdjaskdj ksadj kasjd kas
                                                        sad kjsad kjsak asdjasdkasjdkasjdkj  jskajd  ksdajdaks sdakj jaskd 
                                                        sdjak jksadkjasjkdjsa dkj ksdjjsa dkas djksaj aksjd jkasdjkkasjjdsak
                                                         sajkdjaskdjas ksajkdjaskd jaskjd kasjdk asjdk jaskd jaskdjdkjsajd
                                                        dsjak kjaskd jasdk jaskdjaskdj askj dkas ksajdkjasjd kas jsakjsajk 
                                                        sjd kasjdkjas jdksajd kjsad kjsa kjaskdjaskjdjkasjdksajdksajdksajd"/>
-                                            </Grid>
-                                        </StackLayout>
-                                    </Grid>
-                                </Frame>
-                            </ContentView>
-                        </ViewCell>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                    </DataTemplate>
-                </syncfusion:SfListView.ItemTemplate>
+                            </Grid>
+                          </StackLayout>
+                        </Grid>
+                      </Frame>
+                    </ContentView>
+                  </ViewCell>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </DataTemplate>
+              </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
         </StackLayout>
 
