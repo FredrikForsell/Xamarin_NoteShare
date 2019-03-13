@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             x:Class="NoteShare.SfList_Testing">
+
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="#674F6F84"></Setter>
+            <!-- first 2 numbers in hex sets opacity-->
+            <Setter Property="BorderColor" Value="Black"></Setter>
+            <Setter Property="CornerRadius" Value="10"></Setter>
+            <Setter Property="HeightRequest" Value="120"></Setter>
+            <Setter Property="VerticalOptions" Value="CenterAndExpand"></Setter>
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+
+        <Style TargetType="controls:CircleImage">
+            <Setter Property="HeightRequest" Value="140"></Setter>
+            <Setter Property="WidthRequest" Value="140"></Setter>
+            <Setter Property="Aspect" Value="AspectFill"></Setter>
+            <Setter Property="BorderColor" Value="Aqua"></Setter>
+            <Setter Property="BorderThickness" Value="3"></Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+
+
+
+        <StackLayout 
+            BackgroundColor="Transparent"
+            >
+
+            <syncfusion:SfListView BackgroundColor="Transparent" 
+                          x:Name="noteMenu" 
+                                   ItemSize="120"
+                      ItemsSource="{Binding notes}">
+                <syncfusion:SfListView.ItemTemplate>
+                    
+                    
+                    <DataTemplate>
+
+                        <ViewCell>
+                            <ContentView Margin="0" Padding="0">
+
+                                <Frame HeightRequest="120">
+                                    <!-- Frame with corners-->
+                                    <Grid BackgroundColor="Transparent">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="75" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <controls:CircleImage
+                                                          Source="{Binding icon}" />
+                                        <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                            <Label Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="White"/>
+                                            <Label Text="{Binding Description}" FontSize="Small" TextColor="White" />
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="2" VerticalOptions="End" HorizontalOptions="End">
+                                            <Button Text="expand">
+                                                <Button.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="tap_expand"/>
+                                                </Button.GestureRecognizers>
+                                            </Button>
+                                        </StackLayout>
+
+                                    </Grid>
+                                </Frame>
+
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </StackLayout>
+
+
+
+
+    </ContentPage.Content>
+</ContentPage>

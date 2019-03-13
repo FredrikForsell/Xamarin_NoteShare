@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+    
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteShare.MainPage"
+            xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+            xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+            >
+  <!--Pages can be added as references or inline-->
+
+    <TabbedPage.Resources>
+        
+        <Style TargetType="Frame">
+            <Setter Property="Padding" Value="2"></Setter>
+            <Setter Property="BackgroundColor" Value="#674F6F84"></Setter> <!-- first 2 numbers in hex sets opacity-->
+            <Setter Property="BorderColor" Value="Black"></Setter>
+            <Setter Property="CornerRadius" Value="10"></Setter>
+            <Setter Property="Margin" Value="2"></Setter>
+        </Style>
+
+        <Style TargetType="controls:CircleImage">
+            <Setter Property="HeightRequest" Value="200"></Setter>
+            <Setter Property="WidthRequest" Value="50"></Setter>
+            <Setter Property="Aspect" Value="AspectFill"></Setter>
+            <Setter Property="BorderColor" Value="Aqua"></Setter>
+            <Setter Property="BorderThickness" Value="1.5"></Setter>
+        </Style>
+
+        <Style TargetType="Grid">
+            <Setter Property="RowSpacing" Value="0"></Setter>
+            <Setter Property="ColumnSpacing" Value="0"></Setter>
+            <Setter Property="Padding" Value="0"></Setter>
+        </Style>
+    </TabbedPage.Resources>
+
+        <!--Pages can be added as references or inline-->
+    <ContentPage Title="Notes"
+                  BackgroundColor="#454F6F84"
+                 >
+
+
+
+        <StackLayout 
+            BackgroundColor="Transparent"
+            >
+            <syncfusion:SfListView BackgroundColor="Transparent" 
+                                   x:Name="noteMenu"
+                                   AutoFitMode="Height"
+                                   ItemsSource="{Binding notes}"
+                                   ItemTapped="SfListVIew_OnTapped"
+                                   >
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <ViewCell>
+                            
+                            <ContentView>
+
+                                <Frame>
+                                    <!-- Frame with corners-->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="300" />
+                                        </Grid.ColumnDefinitions>
+
+                                        
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"/>
+                                            <RowDefinition Height="50"/>
+                                        </Grid.RowDefinitions>
+
+                                        
+                                        <!-- Row:0      Column:0 and 1-->
+                                        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
+                                            
+                                            <controls:CircleImage Source="{Binding Icon}" />
+                                            
+                                        </Grid>
+
+                                        
+                                        <!-- Row:0      Column:1-->
+                                        <Grid Grid.Column="1" Grid.Row="0" Padding="5,0,0,0">
+                                            
+                                            <Label Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="White"/>
+                                            
+                                        </Grid>
+
+
+                                        <!-- Row:1      Column:1-->
+                                        <Grid Grid.Column="1" Grid.Row="1" Padding="5,0,0,0">
+                                            
+                                            <Label Text="{Binding Description}" FontSize="Small" TextColor="White" />
+                                            
+                                        </Grid>
+
+
+                                        
+                                        
+                                        
+                                        
+                                        <!-- Content dropdown layout -->
+
+
+
+
+                                        <StackLayout Grid.Row="2"
+                                                     Grid.ColumnSpan="3"
+                                                     
+                                                     IsVisible="{Binding Content_isVisible}">
+
+                                            <Grid>
+                                                <Editor TextColor="White" 
+                                                        AutoSize="TextChanges"
+                                                        Text="lalasldas la slkd laskdlka lskadjas ldkasld aslkd askd alsd lsa
+                                                       sadjk jksadj askdaskjdjkas jjaskd jasjkdj askdjaskdj ksadj kasjd kas
+                                                       sad kjsad kjsak asdjasdkasjdkasjdkj  jskajd  ksdajdaks sdakj jaskd 
+                                                       sdjak jksadkjasjkdjsa dkj ksdjjsa dkas djksaj aksjd jkasdjkkasjjdsak
+                                                        sajkdjaskdjas ksajkdjaskd jaskjd kasjdk asjdk jaskd jaskdjdkjsajd
+                                                       dsjak kjaskd jasdk jaskdjaskdj askj dkas ksajdkjasjd kas jsakjsajk 
+                                                       sjd kasjdkjas jdksajd kjsad kjsa kjaskdjaskjdjkasjdksajdksajdksajd"/>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ContentView>
+                        </ViewCell>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </StackLayout>
+
+        
+        
+    </ContentPage>
+
+
+
+
+<!-- Management Tab-->
+    <ContentPage Title="Management" BackgroundColor="#674F6F84">
+
+        <Grid>
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+
+
+
+            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                <Entry 
+                x:Name="entry_Title"
+                HorizontalTextAlignment="Center"
+                Text="Title"
+                Focused="Entry_Title_Focused"/>
+            </Grid>
+            
+
+            <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                <Entry x:Name="entry_Description" HorizontalTextAlignment="Center" Text="Description" Focused="Entry_Description_Focused"/>
+            </Grid>
+            
+            
+            <Grid Grid.Column="0" Grid.Row="2">
+                <Button Text="Upload Icon from Camera" Clicked="Btn_takePicIconAsync"/>
+            </Grid>
+            
+            
+            <Grid Grid.Column="0" Grid.Row="3">
+                <Button Text="Upload Icon from Files" Clicked="Btn_uploadIconAsync"/>
+            </Grid>
+
+
+            <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
+                <Button Text="Create note" WidthRequest="100" HeightRequest="70" Clicked="Btn_newNote"/>
+            </Grid>
+
+
+            <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" VerticalOptions="End" HorizontalOptions="End">
+
+                <controls:CircleImage x:Name="iconPreview"
+                                        HeightRequest="300"
+                                        WidthRequest="300" 
+                                        Aspect="AspectFill" 
+                                        BorderThickness="5"
+                                        BorderColor="Aqua"
+                                        Source="{Binding icon}"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="CenterAndExpand"
+                                        />
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="img_tapped_upload"/>
+                </Grid.GestureRecognizers>
+            </Grid>
+
+
+            <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                <Button Text="Delete all data in database" Clicked="clearDatabase"/>
+            </Grid>
+
+
+
+
+        </Grid>
+
+
+    </ContentPage>
+
+</TabbedPage>
