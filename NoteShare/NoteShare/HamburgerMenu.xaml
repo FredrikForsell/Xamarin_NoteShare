@@ -6,7 +6,7 @@
 
         <ContentPage
             Title="Menu"
-            BackgroundColor="Transparent"
+            BackgroundColor="Black"
             >
             <StackLayout>
 
@@ -15,9 +15,10 @@
                     Aspect="AspectFill"
                     VerticalOptions="FillAndExpand" 
                     HorizontalOptions="FillAndExpand"
+                    HeightRequest="300"
                     />
 
-                <ListView BackgroundColor="Aqua" 
+                <ListView BackgroundColor="Black" 
                           x:Name="ListMenu" 
                           ItemSelected="HamburgerMenu_Selected" 
                           RowHeight="100">
