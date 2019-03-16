@@ -92,6 +92,8 @@ namespace NoteShare
                         }
                     }
                 }
+
+                noteDB.DeleteNote(tappeditem);
                 MyMenuAsync();
             }
 

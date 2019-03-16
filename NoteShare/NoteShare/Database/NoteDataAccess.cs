@@ -42,6 +42,8 @@ namespace NoteShare.Database
         //Adds an already defined note
         public void AddNewNote()
         {
+            //this note is not inserted into the table
+            //Added to the list so it will display 
             this.Notes.Add(
                 new Note
                 {
@@ -69,6 +71,35 @@ namespace NoteShare.Database
             }
 
         }
+
+        public void DeleteNote(Note notes)
+        {
+            lock (collisionLock)
+            {
+                if(notes.NoteId != 0)
+                {
+                    database.Delete<Note>(notes.NoteId);
+                    this.Notes.Remove(notes);
+                }
+            }
+            
+
+        }
+
+        //Dropping the table
+        public void DropTable()
+        {
+            lock (collisionLock)
+            {
+                //Dropping and recreating table
+                database.DropTable<Note>();
+                database.CreateTable<Note>();
+            }
+            //Creating a new list for all notes
+            this.Notes = null;
+            this.Notes = new ObservableCollection<Note>(database.Table<Note>());
+        }
+
 
         //Example of queries
         public ObservableCollection<Note> GetAllNotes()
@@ -109,20 +140,5 @@ namespace NoteShare.Database
                     .AsEnumerable();
             }
         }
-
-        //Dropping the table
-        public void DropTable()
-        {
-            lock (collisionLock)
-            {
-                //Dropping and recreating table
-                database.DropTable<Note>();
-                database.CreateTable<Note>();
-            }
-            //Creating a new list for all notes
-            this.Notes = null;
-            this.Notes = new ObservableCollection<Note>(database.Table<Note>());
-        }
-
     }
 }
