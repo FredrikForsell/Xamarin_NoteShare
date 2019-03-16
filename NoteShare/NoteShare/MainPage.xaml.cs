@@ -52,54 +52,53 @@ namespace NoteShare
             noteMenu.ItemsSource = notes;
         }
 
-
+        #region Tab 1
         private void SfListVIew_OnTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            
-            //if (e.ItemData != null)
-            //{
-            //    //Reading the elementvalues from the selected list item:
-            //    Note tappedItem = e.ItemData as Note;
-            //    //bool isContentVisible = tappedItem.Content_isVisible;
-            //    int elementId = Convert.ToInt32(tappedItem.NoteId);
-            //    var currentIndex = noteMenu.DataSource.DisplayItems.IndexOf(tappedItem);
+
+            if (e.ItemData != null)
+            {
+                //reading the elementvalues from the selected list item:
+                Note tappeditem = e.ItemData as Note;
+                bool iscontentvisible = tappeditem.Content_isVisible;
+                int elementid = Convert.ToInt32(tappeditem.NoteId);
+                var currentindex = noteMenu.DataSource.DisplayItems.IndexOf(tappeditem);
 
 
-            //    //edit table isVisible value
+                //    //edit table isvisible value
 
-            //    if (isContentVisible)
-            //    {
-            //        DisplayAlert("SfListVIew_OnTapped", isContentVisible.ToString(), "OK");
-                    
-            //        isContentVisible = false;
-                    
-            //    }
-            //    else
-            //    {
-            //        DisplayAlert("SfListVIew_OnTapped", isContentVisible.ToString(), "OK");
-            //        isContentVisible = true;
+                if (iscontentvisible)
+                {
+                    DisplayAlert("sflistview_ontapped", iscontentvisible.ToString(), "ok");
 
+                    iscontentvisible = false;
 
-
-            //        //Only updating the notes list, not the actual local database. that means it will reset the next time the app loads.
-            //        //TODO: Add functionality that edits database instead. Then people can make certain notes be open by default 
-            //        foreach (Notes updateVisibility in notes)
-            //        {
-            //            if (updateVisibility.NoteId == elementId)
-            //            {
-            //                updateVisibility.Content_isVisible = true;
-                            
-            //            }
-            //        }
-                   
+                }
+                else
+                {
+                    DisplayAlert("sflistview_ontapped", iscontentvisible.ToString(), "ok");
+                    iscontentvisible = true;
 
 
 
-            //    }
-                
-            //}
+                    //only updating the notes list, not the actual local database. that means it will reset the next time the app loads.
+                    //todo: add functionality that edits database instead. then people can make certain notes be open by default 
+                    foreach (Note updatevisibility in notes)
+                    {
+                        if (updatevisibility.NoteId == elementid)
+                        {
+                            updatevisibility.Content_isVisible = true;
+
+                        }
+                    }
+                }
+                MyMenuAsync();
+            }
+
+
         }
-        
+        #endregion
+
         #region Tab 2
         private void Btn_newNote(object sender, ClickedEventArgs e)
         {

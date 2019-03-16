@@ -53,7 +53,9 @@ namespace NoteShare.Database
 
         public void AddNewNote(Note notes)
         {
-
+            lock (collisionLock)
+            {
+                database.Insert(notes);
                 this.Notes.Add(
                 new Note
                 {
@@ -63,8 +65,8 @@ namespace NoteShare.Database
                     Content_isVisible = notes.Content_isVisible,
                     Icon = notes.Icon,
 
-                }
-                );
+                });
+            }
 
         }
 
