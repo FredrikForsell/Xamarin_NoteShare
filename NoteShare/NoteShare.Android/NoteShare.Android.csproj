@@ -81,7 +81,7 @@
     <PackageReference Include="Xamarin.Forms" Version="3.3.0.967583" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DATA\LocalFileHelper.cs" />
+    <Compile Include="DatabaseConnection_Android.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

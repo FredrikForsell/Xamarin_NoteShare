@@ -1,5 +1,4 @@
-﻿using NoteShare.DATA;
-using Plugin.Media;
+﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Syncfusion.ListView.XForms;
 using System;
@@ -12,18 +11,27 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Syncfusion.ListView.XForms.Control.Helpers;
+using NoteShare.Database;
 
 namespace NoteShare
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : TabbedPage
     {
-        public class Name { public string name { get; set; } }
+        public class Name {
+            public string name {
+                get;
+                set;
+            }
+        }
+
 
         //Creatin a collection for all notes (list doesnt update list automatically)
-        ObservableCollection<Notes> notes = new ObservableCollection<Notes>();
+        ObservableCollection<Note> notes = new ObservableCollection<Note>();
         ImageSource currentImage;
         string imageLocation;
+        NoteDataAccess noteDB = new NoteDataAccess();
+
 
         public MainPage()
         {
@@ -32,19 +40,15 @@ namespace NoteShare
             NavigationPage.SetHasNavigationBar(this, false);
             this.BarBackgroundColor = Color.FromHex("33566D");
 
-
+            //Updating the list
             MyMenuAsync();
-
-
-            
-
         }
 
 
-
-        public async void MyMenuAsync()
+        public void MyMenuAsync()
         {
-            notes = await App.Database.GetItemsAsync();
+            
+            notes = noteDB.Notes;
             noteMenu.ItemsSource = notes;
         }
 
@@ -52,115 +56,73 @@ namespace NoteShare
         private void SfListVIew_OnTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             
-            if (e.ItemData != null)
-            {
-                //Reading the elementvalues from the selected list item:
-                Notes tappedItem = e.ItemData as Notes;
-                bool isContentVisible = tappedItem.Content_isVisible;
-                int elementId = Convert.ToInt32(tappedItem.NoteId);
-                var currentIndex = noteMenu.DataSource.DisplayItems.IndexOf(tappedItem);
+            //if (e.ItemData != null)
+            //{
+            //    //Reading the elementvalues from the selected list item:
+            //    Note tappedItem = e.ItemData as Note;
+            //    //bool isContentVisible = tappedItem.Content_isVisible;
+            //    int elementId = Convert.ToInt32(tappedItem.NoteId);
+            //    var currentIndex = noteMenu.DataSource.DisplayItems.IndexOf(tappedItem);
 
 
-                //edit table isVisible value
+            //    //edit table isVisible value
 
-                if (isContentVisible)
-                {
-                    DisplayAlert("SfListVIew_OnTapped", isContentVisible.ToString(), "OK");
+            //    if (isContentVisible)
+            //    {
+            //        DisplayAlert("SfListVIew_OnTapped", isContentVisible.ToString(), "OK");
                     
-                    isContentVisible = false;
+            //        isContentVisible = false;
                     
-                }
-                else
-                {
-                    DisplayAlert("SfListVIew_OnTapped", isContentVisible.ToString(), "OK");
-                    isContentVisible = true;
+            //    }
+            //    else
+            //    {
+            //        DisplayAlert("SfListVIew_OnTapped", isContentVisible.ToString(), "OK");
+            //        isContentVisible = true;
 
 
 
-                    //Only updating the notes list, not the actual local database. that means it will reset the next time the app loads.
-                    //TODO: Add functionality that edits database instead. Then people can make certain notes be open by default 
-                    foreach (Notes updateVisibility in notes)
-                    {
-                        if (updateVisibility.NoteId == elementId)
-                        {
-                            updateVisibility.Content_isVisible = true;
+            //        //Only updating the notes list, not the actual local database. that means it will reset the next time the app loads.
+            //        //TODO: Add functionality that edits database instead. Then people can make certain notes be open by default 
+            //        foreach (Notes updateVisibility in notes)
+            //        {
+            //            if (updateVisibility.NoteId == elementId)
+            //            {
+            //                updateVisibility.Content_isVisible = true;
                             
-                        }
-                    }
+            //            }
+            //        }
                    
 
 
 
-                }
+            //    }
                 
-            }
+            //}
         }
-
-        private void clearDatabase(object sender, EventArgs e)
-        {
-            foreach (Notes n in notes)
-            {
-
-                App.Database.DeleteNoteAsync(n);
-
-            }
-        }
-
-
-
-        /* 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * Tabbed Page 2
-         */
-
+        
+        #region Tab 2
         private void Btn_newNote(object sender, ClickedEventArgs e)
         {
             String title = entry_Title.Text;
             String description = entry_Description.Text;
 
-            Notes tempNote = new Notes { Title = title, Description = description, Content = "alal lalal lalal all alla lalla lalal lalal alll content", Icon = imageLocation, Content_isVisible = false};
-            //notes.Add(tempNote);
-            
-            App.Database.SaveNoteAsync(tempNote);
-            MyMenuAsync(); // Updating menu
+            Note tempNote = new Note { Title = title, Description = description, Content = "alal lalal lalal all alla lalla lalal lalal alll content", Icon = imageLocation, Content_isVisible = false};
+            noteDB.AddNewNote(tempNote);
+
+            // Updating ListView
+            MyMenuAsync(); 
 
             DisplayAlert("Congrats", "The note has been created", "Ok");
+        }
+
+
+        private void clearDatabase(object sender, EventArgs e)
+        {
+            //Dropping the noteDB table
+            noteDB.DropTable();
+
+            //Updating the listView
+            MyMenuAsync();
         }
 
         private void Entry_Title_Focused(object sender, FocusEventArgs e)
@@ -180,16 +142,11 @@ namespace NoteShare
 
             // btn_uploadIconAsync(); then iconPreview.Source = icon
         }
+        #endregion
 
 
 
-        /*
-         * 
-         * 
-         * Xamarin Plugin Media 
-         * Picture stuff:
-         * 
-         */
+        #region Xamaring Plugin Media
         private async void Btn_takePicIconAsync(object sender, EventArgs e)
         {
 
@@ -260,4 +217,5 @@ namespace NoteShare
 
         }
     }
+    #endregion
 }
