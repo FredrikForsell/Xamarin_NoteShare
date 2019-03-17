@@ -12,7 +12,7 @@ namespace NoteShare.Database
 
         #region NoteId
         private int _noteId;
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey, AutoIncrement, Unique]
         public int NoteId
         {
             get

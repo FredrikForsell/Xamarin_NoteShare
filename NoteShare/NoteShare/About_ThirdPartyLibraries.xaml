@@ -7,18 +7,24 @@
             <!-- Temporary display of libraries
             //TODO:: Add a datatemplate for libraries
             -->
+
+            <Label Text="Licenses and third party content:"
+                HorizontalOptions="CenterAndExpand" 
+                   FontSize="Large"/>
             
-            <Label Text="Sf_Listview"
-                VerticalOptions="CenterAndExpand" 
+            <Label Text="Sf_Listview plugin from www.syncfusion.com. (Community License)"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Label Text="ImageCircle"
-                VerticalOptions="CenterAndExpand" 
+            <Label Text="The ImageCirclePlugin was made by [jamesmontemagno] from www.github.com"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Label Text="Local database"
-                VerticalOptions="CenterAndExpand" 
+            <Label Text="QLite plugins from www.nuget.org/packages/sqlite-net/. (open source)"
                 HorizontalOptions="CenterAndExpand" />
+
+            <Label Text= "The delete icon was made by [Kiranshastry] from www.flaticon.com"
+                HorizontalOptions="CenterAndExpand" />
+
+           
 
         </StackLayout>
     </ContentPage.Content>

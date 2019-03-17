@@ -25,6 +25,8 @@ namespace NoteShare
             }
         }
 
+        Note swipedItem;
+
 
         //Creatin a collection for all notes (list doesnt update list automatically)
         ObservableCollection<Note> notes = new ObservableCollection<Note>();
@@ -47,7 +49,9 @@ namespace NoteShare
 
         public void MyMenuAsync()
         {
-            
+            //noteDB to fix bug where ID isnt fetched (possibly due to autoIncrement)
+            noteDB = new NoteDataAccess();
+
             notes = noteDB.Notes;
             noteMenu.ItemsSource = notes;
         }
@@ -67,37 +71,61 @@ namespace NoteShare
 
                 //    //edit table isvisible value
 
-                if (iscontentvisible)
-                {
-                    DisplayAlert("sflistview_ontapped", iscontentvisible.ToString(), "ok");
+                //if (iscontentvisible)
+                //{
+                //    DisplayAlert("sflistview_ontapped", iscontentvisible.ToString(), "ok");
 
-                    iscontentvisible = false;
+                //    iscontentvisible = false;
 
-                }
-                else
-                {
-                    DisplayAlert("sflistview_ontapped", iscontentvisible.ToString(), "ok");
-                    iscontentvisible = true;
+                //}
+                //else
+                //{
+                //    DisplayAlert("sflistview_ontapped", iscontentvisible.ToString(), "ok");
+                //    iscontentvisible = true;
 
 
 
-                    //only updating the notes list, not the actual local database. that means it will reset the next time the app loads.
-                    //todo: add functionality that edits database instead. then people can make certain notes be open by default 
-                    foreach (Note updatevisibility in notes)
-                    {
-                        if (updatevisibility.NoteId == elementid)
-                        {
-                            updatevisibility.Content_isVisible = true;
+                //    //only updating the notes list, not the actual local database. that means it will reset the next time the app loads.
+                //    //todo: add functionality that edits database instead. then people can make certain notes be open by default 
+                //    foreach (Note updatevisibility in notes)
+                //    {
+                //        if (updatevisibility.NoteId == elementid)
+                //        {
+                //            updatevisibility.Content_isVisible = true;
 
-                        }
-                    }
-                }
+                //        }
+                //    }
+                //}
 
-                noteDB.DeleteNote(tappeditem);
-                MyMenuAsync();
+                //noteDB.DeleteNote(tappeditem);
+                //MyMenuAsync();
             }
 
 
+        }
+
+        private void NoteMenu_SwipeStarted(object sender, SwipeStartedEventArgs e)
+        {
+            //Saves the current note that is swiped.
+            
+            swipedItem = e.ItemData as Note;
+            //Can now run functions that use the note //Example: OnTapDelete
+
+            
+
+
+        }
+
+        public void OnTapDelete(object sender, EventArgs e)
+        {
+            if (swipedItem != null)
+            {
+                bool deleteCheck = noteDB.DeleteNote(swipedItem);
+
+                noteMenu.ResetSwipe();
+                MyMenuAsync();
+                DisplayAlert("Deleted", deleteCheck.ToString(), "OK");
+            }
         }
         #endregion
 
@@ -107,7 +135,14 @@ namespace NoteShare
             String title = entry_Title.Text;
             String description = entry_Description.Text;
 
-            Note tempNote = new Note { Title = title, Description = description, Content = "alal lalal lalal all alla lalla lalal lalal alll content", Icon = imageLocation, Content_isVisible = false};
+            Note tempNote = new Note {
+                Title = title,
+                Description = description,
+                Content = "alal lalal lalal all alla lalla lalal lalal alll content",
+                Icon = imageLocation,
+                Content_isVisible = false
+            };
+
             noteDB.AddNewNote(tempNote);
 
             // Updating ListView
@@ -217,6 +252,8 @@ namespace NoteShare
             iconPreview.Source = currentImage;
 
         }
+
+        
     }
     #endregion
 }

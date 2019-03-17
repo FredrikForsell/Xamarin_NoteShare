@@ -43,14 +43,18 @@
         <StackLayout 
             BackgroundColor="Transparent"
             >
+
+            <!--Item tapped is used to get Note of the current list-->
+            <!--SwipeStarted is used to get access to the Note object of the swiped list-->
             <syncfusion:SfListView BackgroundColor="Transparent" 
                                    x:Name="noteMenu"
                                    AutoFitMode="Height"
                                    ItemsSource="{Binding notes}"
                                    ItemTapped="SfListVIew_OnTapped"
                                    AllowSwiping="True"
+                                   SwipeStarted="NoteMenu_SwipeStarted"
                                    >
-              
+              <!-- -->
               <!--Setting up leftswipe-->
               <syncfusion:SfListView.LeftSwipeTemplate>
                 <DataTemplate>
@@ -59,8 +63,13 @@
                       <Frame>
                         <Grid>
                           <Grid Grid.Column ="0">
-                            
-                            <Image Source ="uploadPic.png" />
+
+                            <Image Source ="delete.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Tapped="OnTapDelete"/>
+                                </Image.GestureRecognizers>      
+                            </Image>
                            
                           </Grid>
                         </Grid>
@@ -76,65 +85,65 @@
               <syncfusion:SfListView.ItemTemplate>
                 <DataTemplate>
 
-                  <ViewCell>
+                        <ViewCell>
 
-                    <ContentView>
+                            <ContentView>
 
-                      <Frame>
-                        <!-- Frame with corners-->
-                        <Grid>
-                          <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="300" />
-                          </Grid.ColumnDefinitions>
-
-
-                          <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="50"/>
-                          </Grid.RowDefinitions>
+                                <Frame>
+                                    <!-- Frame with corners-->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="300" />
+                                        </Grid.ColumnDefinitions>
 
 
-                          <!-- Row:0      Column:0 and 1-->
-                          <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
-
-                            <controls:CircleImage Source="{Binding Icon}" />
-
-                          </Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"/>
+                                            <RowDefinition Height="50"/>
+                                        </Grid.RowDefinitions>
 
 
-                          <!-- Row:0      Column:1-->
-                          <Grid Grid.Column="1" Grid.Row="0" Padding="5,0,0,0">
+                                        <!-- Row:0      Column:0 and 1-->
+                                        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
 
-                            <Label Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="White"/>
+                                            <controls:CircleImage Source="{Binding Icon}" />
 
-                          </Grid>
-
-
-                          <!-- Row:1      Column:1-->
-                          <Grid Grid.Column="1" Grid.Row="1" Padding="5,0,0,0">
-
-                            <Label Text="{Binding Description}" FontSize="Small" TextColor="White" />
-
-                          </Grid>
+                                        </Grid>
 
 
+                                        <!-- Row:0      Column:1-->
+                                        <Grid Grid.Column="1" Grid.Row="0" Padding="5,0,0,0">
+
+                                            <Label Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="White"/>
+
+                                        </Grid>
+
+
+                                        <!-- Row:1      Column:1-->
+                                        <Grid Grid.Column="1" Grid.Row="1" Padding="5,0,0,0">
+
+                                            <Label Text="{Binding Description}" FontSize="Small" TextColor="White" />
+
+                                        </Grid>
 
 
 
 
-                          <!-- Content dropdown layout -->
+
+
+                                        <!-- Content dropdown layout -->
 
 
 
 
-                          <StackLayout Grid.Row="2"
+                                        <StackLayout Grid.Row="2"
                                        Grid.ColumnSpan="3"
                                                      
                                        IsVisible="{Binding Content_isVisible}">
 
-                            <Grid>
-                              <Editor TextColor="White"
+                                            <Grid>
+                                                <Editor TextColor="White"
                                       AutoSize="TextChanges"
                                       Text="lalasldas la slkd laskdlka lskadjas ldkasld aslkd askd alsd lsa
                                                        sadjk jksadj askdaskjdjkas jjaskd jasjkdj askdjaskdj ksadj kasjd kas
@@ -143,27 +152,13 @@
                                                         sajkdjaskdjas ksajkdjaskd jaskjd kasjdk asjdk jaskd jaskdjdkjsajd
                                                        dsjak kjaskd jasdk jaskdjaskdj askj dkas ksajdkjasjd kas jsakjsajk 
                                                        sjd kasjdkjas jdksajd kjsad kjsa kjaskdjaskjdjkasjdksajdksajdksajd"/>
-                            </Grid>
-                          </StackLayout>
-                        </Grid>
-                      </Frame>
-                    </ContentView>
-                  </ViewCell>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                </DataTemplate>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
               </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
         </StackLayout>

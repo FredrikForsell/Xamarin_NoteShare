@@ -72,7 +72,7 @@ namespace NoteShare.Database
 
         }
 
-        public void DeleteNote(Note notes)
+        public bool DeleteNote(Note notes)
         {
             lock (collisionLock)
             {
@@ -80,6 +80,11 @@ namespace NoteShare.Database
                 {
                     database.Delete<Note>(notes.NoteId);
                     this.Notes.Remove(notes);
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
             
