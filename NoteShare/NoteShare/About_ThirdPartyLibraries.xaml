@@ -18,13 +18,16 @@
             <Label Text="ImageCirclePlugin was made by [rotorgames] from www.github.com"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Label Text="Rg.Plugins.Popup was made by [jamesmontemagno] from www.github.com"
+            <Label Text="TEditor.Forms.Sample was made by [XAM-Consulting] from www.github.com"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Label Text="QLite plugins from www.nuget.org/packages/sqlite-net/. (open source)"
+            <Label Text="SQLite plugins from www.nuget.org/packages/sqlite-net/. (open source)"
                 HorizontalOptions="CenterAndExpand" />
 
             <Label Text= "The delete icon was made by [Kiranshastry] from www.flaticon.com"
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text= "The settings icon was made by [srip] from www.flaticon.com"
                 HorizontalOptions="CenterAndExpand" />
 
            
