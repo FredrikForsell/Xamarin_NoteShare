@@ -87,8 +87,20 @@ namespace NoteShare.Database
                     return false;
                 }
             }
-            
+        }
 
+        public void InsertNote(Note notes)
+        {
+            lock (collisionLock)
+            {
+                foreach (var noteInstance in this.Notes)
+                {
+                    if (noteInstance.NoteId == notes.NoteId){
+                        database.Update(noteInstance);
+                        this.Notes = new ObservableCollection<Note>(database.Table<Note>());
+                    }
+                }
+            }
         }
 
         //Dropping the table
