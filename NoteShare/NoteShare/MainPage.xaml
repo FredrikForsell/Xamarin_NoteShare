@@ -14,8 +14,8 @@
             <Setter Property="Padding" Value="2"></Setter>
             <Setter Property="BackgroundColor" Value="#674F6F84"></Setter> <!-- first 2 numbers in hex sets opacity-->
             <Setter Property="BorderColor" Value="Black"></Setter>
-            <Setter Property="CornerRadius" Value="10"></Setter>
-            <Setter Property="Margin" Value="2"></Setter>
+            <Setter Property="CornerRadius" Value="0"></Setter>
+            <Setter Property="Margin" Value="0,2,2,2"></Setter>
         </Style>
 
         <Style TargetType="controls:CircleImage">
@@ -60,7 +60,7 @@
                 <DataTemplate>
                   <ViewCell>
                     <ContentView>
-                      <Frame>
+                      <Frame CornerRadius="0" Margin="0,2,0,2" Padding="0">
                         <Grid>
                           <Grid Grid.Column ="0">
 

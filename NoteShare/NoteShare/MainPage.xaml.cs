@@ -12,6 +12,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Syncfusion.ListView.XForms.Control.Helpers;
 using NoteShare.Database;
+using TEditor.Abstractions;
+using TEditor;
 
 namespace NoteShare
 {
@@ -34,6 +36,7 @@ namespace NoteShare
         string imageLocation;
         NoteDataAccess noteDB = new NoteDataAccess();
 
+        public bool IsPresented { get; private set; }
 
         public MainPage()
         {
@@ -57,7 +60,7 @@ namespace NoteShare
         }
 
         #region Tab 1
-        private void SfListVIew_OnTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private async void SfListVIew_OnTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
 
             if (e.ItemData != null)
@@ -67,6 +70,25 @@ namespace NoteShare
                 bool iscontentvisible = tappeditem.Content_isVisible;
                 int elementid = Convert.ToInt32(tappeditem.NoteId);
                 var currentindex = noteMenu.DataSource.DisplayItems.IndexOf(tappeditem);
+
+                String content = tappeditem.Content;
+                var toolbar = new ToolbarBuilder().AddBasic().AddH1();
+                new MainPage();
+
+                CrossTEditor.PageTitle = tappeditem.Title;
+                TEditorResponse response = await CrossTEditor.Current.ShowTEditor(content);
+                if (response.IsSave)
+                {
+                    if (response.HTML != null)
+                    {
+                        content = response.HTML;
+                        tappeditem.Content = content;
+                        noteDB.InsertNote(tappeditem);
+                        //Save to localDatabase.content
+                    }
+                }
+
+                //TEditorResponse response = await CrossTEditor.Current.ShowTEditor(content, toolbar);
 
 
                 //    //edit table isvisible value
