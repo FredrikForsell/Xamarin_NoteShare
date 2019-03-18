@@ -53,6 +53,8 @@
                                    ItemTapped="SfListVIew_OnTapped"
                                    AllowSwiping="True"
                                    SwipeStarted="NoteMenu_SwipeStarted"
+                                   PropertyChanged="ListView_PropertyChanged"
+                                   SwipeOffset="70"
                                    >
               <!-- -->
               <!--Setting up leftswipe-->
@@ -63,6 +65,16 @@
                       <Frame CornerRadius="0" Margin="0,2,0,2" Padding="0">
                         <Grid>
                           <Grid Grid.Column ="0">
+
+                            <Image Source ="delete.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Tapped="OnTapDelete"/>
+                                </Image.GestureRecognizers>      
+                            </Image>
+                           
+                          </Grid>
+                            <Grid Grid.Column ="1">
 
                             <Image Source ="delete.png">
                                 <Image.GestureRecognizers>
