@@ -14,6 +14,7 @@ using Syncfusion.ListView.XForms.Control.Helpers;
 using NoteShare.Database;
 using TEditor.Abstractions;
 using TEditor;
+using System.ComponentModel;
 
 namespace NoteShare
 {
@@ -60,6 +61,21 @@ namespace NoteShare
         }
 
         #region Tab 1
+        public double SwipeOffset { get; set; }
+
+        //Setting size of LeftSwipe
+        private void ListView_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Width" && noteMenu.Orientation == Orientation.Vertical && noteMenu.SwipeOffset != noteMenu.Width)
+            {
+                noteMenu.SwipeOffset = noteMenu.Width/2;
+            }
+            else if (e.PropertyName == "Height" && noteMenu.Orientation == Orientation.Horizontal && noteMenu.SwipeOffset != noteMenu.Height)
+            {
+                noteMenu.SwipeOffset = noteMenu.Height;
+            }
+                
+        }
         private async void SfListVIew_OnTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
 
