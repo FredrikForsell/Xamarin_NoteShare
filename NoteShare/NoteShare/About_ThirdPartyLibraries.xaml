@@ -15,7 +15,10 @@
             <Label Text="Sf_Listview plugin from www.syncfusion.com. (Community License)"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Label Text="The ImageCirclePlugin was made by [jamesmontemagno] from www.github.com"
+            <Label Text="ImageCirclePlugin was made by [rotorgames] from www.github.com"
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="Rg.Plugins.Popup was made by [jamesmontemagno] from www.github.com"
                 HorizontalOptions="CenterAndExpand" />
 
             <Label Text="QLite plugins from www.nuget.org/packages/sqlite-net/. (open source)"
@@ -25,6 +28,8 @@
                 HorizontalOptions="CenterAndExpand" />
 
            
+
+
 
         </StackLayout>
     </ContentPage.Content>
