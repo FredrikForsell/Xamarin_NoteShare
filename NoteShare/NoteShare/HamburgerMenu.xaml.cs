@@ -36,7 +36,7 @@ namespace NoteShare
                 //Create menu items
                 
                 new Menu {Page = new MainPage(), MenuTitle = "Main page", MenuDetail = "Original", icon = "note.png"},
-                new Menu {Page = new SfList_Testing(), MenuTitle = "Main page", MenuDetail = "Testing", icon = "note.png"},
+                new Menu {Page = new MainPage(), MenuTitle = "New Note", MenuDetail = "Testing", icon = "note.png"},
                 new Menu {Page = new About_ThirdPartyLibraries(), MenuTitle = "Libraries", MenuDetail = "Third party libraries", icon = "note.png"},
             };
             ListMenu.ItemsSource = menu;
