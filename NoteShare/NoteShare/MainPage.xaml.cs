@@ -21,12 +21,13 @@ namespace NoteShare
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : TabbedPage
     {
-        public class Name {
-            public string name {
-                get;
-                set;
-            }
-        }
+        //Commented to test if i can delete
+        //public class Name {
+        //    public string name {
+        //        get;
+        //        set;
+        //    }
+        //}
 
         Note swipedItem;
 
