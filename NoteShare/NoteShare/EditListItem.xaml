@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="NoteShare.EditListItem">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Grid>
+
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+
+
+
+
+                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                    <Entry 
+                x:Name="entry_Title"
+                HorizontalTextAlignment="Center"
+                Text="Title"
+                Focused="Entry_Title_Focused"/>
+                </Grid>
+
+
+                <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                    <Entry x:Name="entry_Description" HorizontalTextAlignment="Center" Text="Description" Focused="Entry_Description_Focused"/>
+                </Grid>
+
+
+                <Grid Grid.Column="0" Grid.Row="2">
+                    <Button Text="Upload Icon from Camera" Clicked="Btn_takePicIconAsync"/>
+                </Grid>
+
+
+                <Grid Grid.Column="0" Grid.Row="3">
+                    <Button Text="Upload Icon from Files" Clicked="Btn_uploadIconAsync"/>
+                </Grid>
+
+
+                <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
+                    <Button Text="Update Note" WidthRequest="100" HeightRequest="70" Clicked="Btn_updateNote"/>
+                </Grid>
+
+
+                <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" VerticalOptions="End" HorizontalOptions="End">
+
+                    <controls:CircleImage x:Name="iconPreview"
+                                        HeightRequest="200"
+                                        WidthRequest="200" 
+                                        Aspect="AspectFill" 
+                                        BorderThickness="5"
+                                        BorderColor="Aqua"
+                                        Source="{Binding icon}"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="CenterAndExpand"
+                                        />
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="img_tapped_upload"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+
+                <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

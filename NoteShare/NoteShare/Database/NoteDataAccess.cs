@@ -89,7 +89,7 @@ namespace NoteShare.Database
             }
         }
 
-        public void InsertNote(Note notes)
+        public void UpdateNote(Note notes)
         {
             lock (collisionLock)
             {
@@ -97,7 +97,6 @@ namespace NoteShare.Database
                 {
                     if (noteInstance.NoteId == notes.NoteId){
                         database.Update(noteInstance);
-                        this.Notes = new ObservableCollection<Note>(database.Table<Note>());
                     }
                 }
             }

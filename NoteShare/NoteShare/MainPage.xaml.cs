@@ -92,6 +92,7 @@ namespace NoteShare
                 new MainPage();
 
                 CrossTEditor.PageTitle = tappeditem.Title;
+                
                 TEditorResponse response = await CrossTEditor.Current.ShowTEditor(content);
                 if (response.IsSave)
                 {
@@ -99,7 +100,7 @@ namespace NoteShare
                     {
                         content = response.HTML;
                         tappeditem.Content = content;
-                        noteDB.InsertNote(tappeditem);
+                        noteDB.UpdateNote(tappeditem);
                         //Save to localDatabase.content
                     }
                 }
@@ -162,7 +163,15 @@ namespace NoteShare
 
                 noteMenu.ResetSwipe();
                 MyMenuAsync();
-                DisplayAlert("Deleted", deleteCheck.ToString(), "OK");
+            }
+        }
+
+        public async void OnTapEditListItem(object sender, EventArgs e)
+        {
+            if (swipedItem !=null)
+            {
+                await Navigation.PushAsync(new EditListItem(swipedItem));
+                
             }
         }
         #endregion
@@ -173,7 +182,8 @@ namespace NoteShare
             String title = entry_Title.Text;
             String description = entry_Description.Text;
 
-            Note tempNote = new Note {
+            Note tempNote = new Note
+            {
                 Title = title,
                 Description = description,
                 Content = "alal lalal lalal all alla lalla lalal lalal alll content",
@@ -184,7 +194,7 @@ namespace NoteShare
             noteDB.AddNewNote(tempNote);
 
             // Updating ListView
-            MyMenuAsync(); 
+            MyMenuAsync();
 
             DisplayAlert("Congrats", "The note has been created", "Ok");
         }
@@ -245,7 +255,7 @@ namespace NoteShare
                 return;
 
 
-            await DisplayAlert("File Location", file.Path, "OK");
+           // await DisplayAlert("File Location", file.Path, "OK");
             imageLocation = file.Path;
 
             currentImage = ImageSource.FromStream(() =>
@@ -291,7 +301,7 @@ namespace NoteShare
 
         }
 
-        
+
     }
     #endregion
 }
