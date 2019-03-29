@@ -88,29 +88,35 @@ namespace NoteShare
                 int elementid = Convert.ToInt32(tappeditem.NoteId);
                 var currentindex = noteMenu.DataSource.DisplayItems.IndexOf(tappeditem);
 
-                String content = tappeditem.Content;
-                var toolbar = new ToolbarBuilder().AddBasic().AddH1();
-                new MainPage();
+                await Navigation.PushAsync(new NoteView(elementid));
 
-                CrossTEditor.PageTitle = tappeditem.Title;
-                
-                TEditorResponse response = await CrossTEditor.Current.ShowTEditor(content);
-                if (response.IsSave)
-                {
-                    if (response.HTML != null)
-                    {
-                        content = response.HTML;
-                        tappeditem.Content = content;
-                        noteDB.UpdateNote(tappeditem);
-                        //Save to localDatabase.content
-                    }
-                }
+
+                //Code for old html View
+                //String content = tappeditem.Content;
+                //var toolbar = new ToolbarBuilder().AddBasic().AddH1();
+                //new MainPage();
+
+                //CrossTEditor.PageTitle = tappeditem.Title;
+
+                //TEditorResponse response = await CrossTEditor.Current.ShowTEditor(content);
+                //if (response.IsSave)
+                //{
+                //    if (response.HTML != null)
+                //    {
+                //        content = response.HTML;
+                //        tappeditem.Content = content;
+                //        noteDB.UpdateNote(tappeditem);
+                //        //Save to localDatabase.content
+                //    }
+                //}
 
                 //TEditorResponse response = await CrossTEditor.Current.ShowTEditor(content, toolbar);
 
 
                 //    //edit table isvisible value
 
+
+                //Code for old content view on click
                 //if (iscontentvisible)
                 //{
                 //    DisplayAlert("sflistview_ontapped", iscontentvisible.ToString(), "ok");
