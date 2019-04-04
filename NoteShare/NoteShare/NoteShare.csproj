@@ -23,6 +23,7 @@
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+    <PackageReference Include="SuaveControls.FloatingActionButton" Version="2018.1.5" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.4.0.46" />
     <PackageReference Include="TEditor" Version="1.0.3" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using SuaveControls.FloatingActionButton.iOS.Renderers;
 using UIKit;
 
 namespace NoteShare.iOS
@@ -22,7 +23,12 @@ namespace NoteShare.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            //popup init
             Rg.Plugins.Popup.Popup.Init();
+
+            //Floating button init
+            FloatingActionButtonRenderer.InitRenderer();
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

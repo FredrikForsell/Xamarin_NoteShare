@@ -2,15 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              x:Class="NoteShare.NoteView">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid>
             
             <syncfusion:SfListView BackgroundColor="Transparent" 
                                    x:Name="noteMenu"
                                    AutoFitMode="Height"
                                    ItemsSource="{Binding noteContents}"
                                    AllowSwiping="True"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
                                    >
             
             <syncfusion:SfListView.ItemTemplate>
@@ -32,15 +35,26 @@
             </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
 
+            <controls:FloatingActionButton x:Name="FAB" 
+                                           HorizontalOptions="End" 
+                                           WidthRequest="100" HeightRequest="100"  
+                                           VerticalOptions="End" 
+                                           Image="ic_add_white.png" 
+                                           ButtonColor="#33566D" 
+                                           Text="+"
+                                           Clicked="addNoteContentAsync"
+                                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                                           AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"/>
+
+            <!-- 
+            
             <Button Text="Delete all (during testing)"
                     Clicked="DeleteAllNotes"
                     BackgroundColor="Red"/>
-
-            <Button Text="Add"
-                    Clicked="addNoteContentAsync"
-                    BackgroundColor="Transparent"/>
+            
+            -->
 
 
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -15,6 +15,8 @@ namespace NoteShare
 
             MainPage = new HamburgerMenu();
 
+
+
         }
 
         protected override void OnStart()
