@@ -65,6 +65,20 @@ namespace NoteShare.Database
             }
         }
 
+        //Delete all
+        public void DeleteNoteContent()
+        {
+            lock (collisionLock)
+            {
+                //Dropping and recreating table
+                database.DropTable<NoteContent>();
+                database.CreateTable<NoteContent>();
+            }
+            //Creating a new list for all notes
+            this.NoteContents = null;
+            this.NoteContents = new ObservableCollection<NoteContent>(database.Table<NoteContent>());
+        }
+
         public IEnumerable<NoteContent> GetFilteredNotes(int noteId)
         {
             lock (collisionLock)
