@@ -88,7 +88,7 @@ namespace NoteShare
                 int elementid = Convert.ToInt32(tappeditem.NoteId);
                 var currentindex = noteMenu.DataSource.DisplayItems.IndexOf(tappeditem);
 
-                await Navigation.PushAsync(new NoteView(elementid));
+                await Navigation.PushAsync(new NoteView(elementid, tappeditem.Title));
 
 
                 //Code for old html View
