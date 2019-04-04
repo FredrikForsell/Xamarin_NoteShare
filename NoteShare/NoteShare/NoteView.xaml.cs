@@ -1,4 +1,5 @@
 ﻿using NoteShare.Database;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,18 +20,20 @@ namespace NoteShare
         NoteContentDataAccess noteDB = new NoteContentDataAccess();
         int elementid;
 
-        public NoteView()
-        {
-            InitializeComponent();
-        }
 
-        public NoteView(int elementid)
+        public NoteView(int elementid, string title)
         {
             this.elementid = elementid;
             InitializeComponent();
 
             noteDB = new NoteContentDataAccess();
             updateList();
+
+            Title = title;
+
+            MessagingCenter.Subscribe<App>((App)Application.Current, "OnSaveNote", (sender) => {
+                updateList();
+            });
 
 
         }
@@ -39,18 +42,19 @@ namespace NoteShare
             noteContents = noteDB.GetFilteredNotes(elementid);
             noteMenu.ItemsSource = noteContents;
         }
-        private void addNoteContent(object sender, ClickedEventArgs e)
+        private async void addNoteContentAsync(object sender, ClickedEventArgs e)
         {
-            NoteContent tempNoteContent = new NoteContent
-            {
-                NoteId = elementid,
-                NoteItem = "Test"
-            };
+            await PopupNavigation.Instance.PushAsync(
+                new PopupView(elementid)
+                );
+            
+        }
 
-            noteDB.AddNewNoteContent(tempNoteContent);
+
+        private void DeleteAllNotes(object sender, EventArgs e)
+        {
+            noteDB.DeleteNoteContent();
             updateList();
-
-
         }
     }
 }
