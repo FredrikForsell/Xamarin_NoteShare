@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.4.0.46" />
@@ -62,7 +63,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NoteCSS.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="NoteView.xaml">
+    <EmbeddedResource Update="PopupView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
