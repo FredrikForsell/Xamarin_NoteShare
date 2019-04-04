@@ -61,34 +61,34 @@
               <syncfusion:SfListView.LeftSwipeTemplate>
                 <DataTemplate>
                   <ViewCell>
-                    <ContentView>
-                      <Frame CornerRadius="0" Margin="0,2,0,2" Padding="0">
-                        <Grid>
-                          <Grid Grid.Column ="0" Padding="0,20,0,10">
+                            <ContentView>
+                                <Grid 
+                                      Margin="0,2,0,2" 
+                                      Padding="0">
+                                    <Grid Grid.Column ="0" Padding="0,20,0,10">
 
-                            <Image Source ="delete.png">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer 
+                                        <Image Source ="delete.png">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer 
                                         Tapped="OnTapDelete"/>
-                                </Image.GestureRecognizers>      
-                            </Image>
-                           
-                          </Grid>
-                            
-                            
-                          <Grid Grid.Column ="1" Padding="0,20,0,10">
+                                            </Image.GestureRecognizers>
+                                        </Image>
 
-                            <Image Source ="settings.png">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer 
+                                    </Grid>
+
+
+                                    <Grid Grid.Column ="1" Padding="0,20,0,10">
+
+                                        <Image Source ="settings.png">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer 
                                         Tapped="OnTapEditListItem"/>
-                                </Image.GestureRecognizers>      
-                            </Image>
-                           
-                          </Grid>
-                        </Grid>
-                      </Frame>
-                    </ContentView>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                    </Grid>
+                                </Grid>
+                            </ContentView>
                   </ViewCell>
                 </DataTemplate>
               </syncfusion:SfListView.LeftSwipeTemplate>
