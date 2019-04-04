@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    x:Class="NoteShare.PopupView">
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation DurationIn="200"
+                                   DurationOut="100"
+                                   EasingIn="BounceIn"
+                                   EasingOut="SinInOut"
+                                   HasBackgroundAnimation="True"
+                                   PositionIn="Bottom"
+                                   PositionOut="Bottom"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.2"
+                                   />
+    </pages:PopupPage.Animation>
+    <StackLayout Margin="12"
+                 Padding="24"
+                 Spacing="24"
+                 BackgroundColor="White"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center"
+                 WidthRequest="300">
+
+        <StackLayout>
+            <Label Text="Task name"/>
+            <Entry FontSize="20"
+                   Text="..."
+                   x:Name="entry_taskName"
+                   Focused="Entry_taskName_Focused"/>
+        </StackLayout>
+
+
+        <Button
+            Text="Submit"
+            FontSize="20"
+            BackgroundColor="DodgerBlue"
+            Clicked="btn_submitAsync"/>
+
+
+    </StackLayout>
+    
+</pages:PopupPage>
