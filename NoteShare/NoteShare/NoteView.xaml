@@ -20,7 +20,8 @@
 
                         <ContentView>
 
-                                <Frame BackgroundColor="Black" Margin="0,0,0,5">
+                                <Frame x:Name="listItem"
+                                    BackgroundColor="Gray" Margin="0,0,0,5">
                                     <!-- Frame with corners-->
                                     <Label Text="{Binding NoteItem}" FontSize="Medium" FontAttributes="Bold" TextColor="White"/>
 
@@ -31,8 +32,15 @@
             </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
 
+            <Button Text="Delete all (during testing)"
+                    Clicked="DeleteAllNotes"
+                    BackgroundColor="Red"/>
+
             <Button Text="Add"
-                    Clicked="addNoteContent"/>
+                    Clicked="addNoteContentAsync"
+                    BackgroundColor="Transparent"/>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
