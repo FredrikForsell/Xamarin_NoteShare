@@ -7,15 +7,15 @@
     x:Class="NoteShare.PopupView">
 
     <pages:PopupPage.Animation>
-        <animations:ScaleAnimation DurationIn="200"
-                                   DurationOut="100"
-                                   EasingIn="BounceIn"
-                                   EasingOut="SinInOut"
+        <animations:ScaleAnimation DurationIn="250"
+                                   DurationOut="250"
+                                   EasingIn="SinIn"
+                                   EasingOut="SinOut"
                                    HasBackgroundAnimation="True"
-                                   PositionIn="Bottom"
-                                   PositionOut="Bottom"
+                                   PositionIn="Right"
+                                   PositionOut="Left"
                                    ScaleIn="1.2"
-                                   ScaleOut="0.2"
+                                   ScaleOut="1.2"
                                    />
     </pages:PopupPage.Animation>
     <StackLayout Margin="12"
