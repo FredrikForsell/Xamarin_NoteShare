@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
     
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NoteShare.MainPage"
             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-            >
+            xmlns:controls1="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+            xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms">
   <!--Pages can be added as references or inline-->
 
-    <TabbedPage.Resources>
+    <ContentPage.Resources>
         
         <Style TargetType="Frame">
             <Setter Property="Padding" Value="2"></Setter>
@@ -31,18 +32,38 @@
             <Setter Property="ColumnSpacing" Value="0"></Setter>
             <Setter Property="Padding" Value="0"></Setter>
         </Style>
-    </TabbedPage.Resources>
+    </ContentPage.Resources>
 
         <!--Pages can be added as references or inline-->
-    <ContentPage Title="Notes"
-                  BackgroundColor="#454F6F84"
-                 >
 
+    <ContentPage.Content>
 
+        <!--Add tabview for future testing-->
+        <tabView:SfTabView BackgroundColor="Aqua">
+            <tabView:SfTabItem Title="Call">
+                <tabView:SfTabItem.Content>
+                    <Grid BackgroundColor="Red" x:Name="AllContactsGrid" />
+                    
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+            <tabView:SfTabItem Title="Favorites">
+                <tabView:SfTabItem.Content>
+                    <Grid BackgroundColor="Green" x:Name="FavoritesGrid" />
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+        </tabView:SfTabView>
+    </ContentPage.Content>
 
-        <StackLayout 
+    <Grid 
             BackgroundColor="Transparent"
             >
+        <!-- Add button for changing tab
+        
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <Button Text="Notes"></Button>
+            <Button Text="Todo"></Button>
+        </StackLayout>
+        -->
 
             <!--Item tapped is used to get Note of the current list-->
             <!--SwipeStarted is used to get access to the Note object of the swiped list-->
@@ -54,7 +75,8 @@
                                    AllowSwiping="True"
                                    SwipeStarted="NoteMenu_SwipeStarted"
                                    PropertyChanged="ListView_PropertyChanged"
-                                   SwipeOffset="70"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
                                    >
               <!-- -->
               <!--Setting up leftswipe-->
@@ -140,34 +162,6 @@
                                             <Label Text="{Binding Description}" FontSize="Small" TextColor="White" />
 
                                         </Grid>
-
-
-
-
-
-
-                                        <!-- Content dropdown layout -->
-
-
-
-
-                                        <StackLayout Grid.Row="2"
-                                       Grid.ColumnSpan="3"
-                                                     
-                                       IsVisible="{Binding Content_isVisible}">
-
-                                            <Grid>
-                                                <Editor TextColor="White"
-                                      AutoSize="TextChanges"
-                                      Text="lalasldas la slkd laskdlka lskadjas ldkasld aslkd askd alsd lsa
-                                                       sadjk jksadj askdaskjdjkas jjaskd jasjkdj askdjaskdj ksadj kasjd kas
-                                                       sad kjsad kjsak asdjasdkasjdkasjdkj  jskajd  ksdajdaks sdakj jaskd 
-                                                       sdjak jksadkjasjkdjsa dkj ksdjjsa dkas djksaj aksjd jkasdjkkasjjdsak
-                                                        sajkdjaskdjas ksajkdjaskd jaskjd kasjdk asjdk jaskd jaskdjdkjsajd
-                                                       dsjak kjaskd jasdk jaskdjaskdj askj dkas ksajdkjasjd kas jsakjsajk 
-                                                       sjd kasjdkjas jdksajd kjsad kjsa kjaskdjaskjdjkasjdksajdksajdksajd"/>
-                                            </Grid>
-                                        </StackLayout>
                                     </Grid>
                                 </Frame>
                             </ContentView>
@@ -175,96 +169,34 @@
                     </DataTemplate>
               </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
-        </StackLayout>
 
-        
-        
-    </ContentPage>
-
-
-
-
-<!-- Management Tab-->
-    <ContentPage Title="Management" BackgroundColor="#674F6F84">
-
-        <Grid>
-
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="75" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-            </Grid.RowDefinitions>
-
-
-
-
-            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
-                <Entry 
-                x:Name="entry_Title"
-                HorizontalTextAlignment="Center"
-                Text="Title"
-                Focused="Entry_Title_Focused"/>
-            </Grid>
-            
-
-            <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-                <Entry x:Name="entry_Description" HorizontalTextAlignment="Center" Text="Description" Focused="Entry_Description_Focused"/>
-            </Grid>
-            
-            
-            <Grid Grid.Column="0" Grid.Row="2">
-                <Button Text="Upload Icon from Camera" Clicked="Btn_takePicIconAsync"/>
-            </Grid>
-            
-            
-            <Grid Grid.Column="0" Grid.Row="3">
-                <Button Text="Upload Icon from Files" Clicked="Btn_uploadIconAsync"/>
-            </Grid>
-
-
-            <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
-                <Button Text="Create note" WidthRequest="100" HeightRequest="70" Clicked="Btn_newNote"/>
-            </Grid>
-
-
-            <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" VerticalOptions="End" HorizontalOptions="End">
-
-                <controls:CircleImage x:Name="iconPreview"
-                                        HeightRequest="300"
-                                        WidthRequest="300" 
-                                        Aspect="AspectFill" 
-                                        BorderThickness="5"
-                                        BorderColor="Aqua"
-                                        Source="{Binding icon}"
-                                        HorizontalOptions="CenterAndExpand"
-                                        VerticalOptions="CenterAndExpand"
-                                        />
-
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="img_tapped_upload"/>
-                </Grid.GestureRecognizers>
-            </Grid>
-
-
-            <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
-                <Button Text="Delete all data in database" Clicked="clearDatabase"/>
-            </Grid>
-
-
-
-
+            <controls1:FloatingActionButton x:Name="FAB" 
+                                           HorizontalOptions="End" 
+                                           WidthRequest="100" HeightRequest="100"  
+                                           VerticalOptions="End" 
+                                           Image="ic_add_white.png" 
+                                           ButtonColor="#33566D" 
+                                           Clicked="addNoteAsync"
+                                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                                           AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"/>
         </Grid>
 
+                    
 
-    </ContentPage>
 
-</TabbedPage>
+
+
+
+
+
+
+
+                        <!-- Management Tab
+    <ContentPage Title="ToDo" BackgroundColor="#674F6F84">
+
+        
+
+
+    </ContentPage>-->
+
+</ContentPage>
