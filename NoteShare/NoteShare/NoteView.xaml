@@ -40,8 +40,7 @@
                                            WidthRequest="100" HeightRequest="100"  
                                            VerticalOptions="End" 
                                            Image="ic_add_white.png" 
-                                           ButtonColor="#33566D" 
-                                           Text="+"
+                                           ButtonColor="#33566D"
                                            Clicked="addNoteContentAsync"
                                            AbsoluteLayout.LayoutFlags="PositionProportional"
                                            AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"/>
