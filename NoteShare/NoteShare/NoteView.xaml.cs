@@ -1,5 +1,6 @@
 ﻿using NoteShare.Database;
 using Rg.Plugins.Popup.Services;
+using Syncfusion.ListView.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,6 +20,7 @@ namespace NoteShare
         IEnumerable<NoteContent> noteContents;
         NoteContentDataAccess noteDB = new NoteContentDataAccess();
         int elementid;
+        NoteContent swipedItem;
 
 
         public NoteView(int elementid, string title)
@@ -55,6 +57,30 @@ namespace NoteShare
         {
             noteDB.DeleteNoteContent();
             updateList();
+        }
+
+        private void OnTapDelete(object sender, EventArgs e)
+        {
+            if (swipedItem != null)
+            {
+                bool deleteCheck = noteDB.DeleteNoteContent(swipedItem);
+
+                noteMenu.ResetSwipe();
+                updateList();
+            }
+        }
+
+        private void OnTapEditListItem(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NoteMenu_SwipeStarted(object sender, SwipeStartedEventArgs e)
+        {
+            //Saves the current note that is swiped.
+
+            swipedItem = e.ItemData as NoteContent;
+            //Can now run functions that use the note //Example: OnTapDelete
         }
     }
 }
