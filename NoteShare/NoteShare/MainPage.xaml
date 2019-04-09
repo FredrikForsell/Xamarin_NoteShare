@@ -54,7 +54,7 @@
             BackgroundColor="#4033566D"
             >
 
-            <!-- Add button for changing tab-->
+            <!-- Add button for changing tab--><!--
             <Grid VerticalOptions="FillAndExpand" 
                   HorizontalOptions="FillAndExpand"
                   
@@ -77,7 +77,7 @@
                         HorizontalOptions="Center"
                         VerticalOptions="CenterAndExpand" 
                         Grid.Row="0" Grid.Column="1" />
-            </Grid>
+            </Grid>-->
 
 
 
