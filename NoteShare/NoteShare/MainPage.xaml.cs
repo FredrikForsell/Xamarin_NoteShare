@@ -42,8 +42,8 @@ namespace NoteShare
         public MainPage()
         {
             InitializeComponent();
-            Title = "NoteShare";
-            NavigationPage.SetHasNavigationBar(this, false);
+            Title = "    NoteShare    ";
+            NavigationPage.SetHasNavigationBar(this, true);
             //this.BarBackgroundColor = Color.FromHex("33566D");
 
             //Updating the list
@@ -106,10 +106,6 @@ namespace NoteShare
 
             swipedItem = e.ItemData as Note;
             //Can now run functions that use the note //Example: OnTapDelete
-
-
-
-
         }
 
         public void OnTapDelete(object sender, EventArgs e)
