@@ -4,8 +4,21 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
              x:Class="NoteShare.NoteView">
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="Padding" Value="2"></Setter>
+            <Setter Property="BackgroundColor" Value="white"></Setter>
+            <!-- first 2 numbers in hex sets opacity-->
+            <!--<Setter Property="BorderColor" Value="Black"></Setter>-->
+            <Setter Property="HasShadow" Value="False"></Setter>
+            <Setter Property="CornerRadius" Value="0"></Setter>
+            <Setter Property="Margin" Value="0,0,8,4"></Setter>
+            <Setter Property="Padding" Value="8, 4, 8, 4"></Setter>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid>
+        <Grid
+            BackgroundColor="#4033566D">
             
             <syncfusion:SfListView BackgroundColor="Transparent" 
                                    x:Name="noteMenu"
@@ -14,21 +27,59 @@
                                    AllowSwiping="True"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                     AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                                   SwipeStarted="NoteMenu_SwipeStarted"
                                    >
-            
-            <syncfusion:SfListView.ItemTemplate>
+
+                <!--ListView leftswipe-->
+                <syncfusion:SfListView.LeftSwipeTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ContentView>
+                                <Grid 
+                                      Margin="0,2,0,2" 
+                                      Padding="0">
+                                    <Grid Grid.Column ="0" Padding="0,0,0,0">
+
+                                        <Image Source ="delete.png">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer 
+                                        Tapped="OnTapDelete"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                    </Grid>
+
+
+                                    <Grid Grid.Column ="1" Padding="0,0,0,0">
+
+                                        <Image Source ="settings.png">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer 
+                                        Tapped="OnTapEditListItem"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                    </Grid>
+                                </Grid>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.LeftSwipeTemplate>
+                
+                <!--ListView Item template-->
+
+                <syncfusion:SfListView.ItemTemplate>
                 <DataTemplate>
 
                     <ViewCell>
 
                         <ContentView>
 
-                                <Frame x:Name="listItem"
-                                    BackgroundColor="Gray" Margin="0,0,0,5">
+                                <Frame x:Name="listItem">
                                     <!-- Frame with corners-->
-                                    <Label Text="{Binding NoteItem}" FontSize="Medium" FontAttributes="Bold" TextColor="White"/>
+                                    <Label Text="{Binding NoteItem}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
 
-                            </Frame>
+                                </Frame>
                         </ContentView>
                     </ViewCell>
                 </DataTemplate>
