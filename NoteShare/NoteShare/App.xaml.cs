@@ -10,7 +10,7 @@ namespace NoteShare
     {
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTY1NzJAMzEzNjJlMzQyZTMwUkI3bmpiTFNYYmJZcDZyd3MvY1YrRVRxZEk4a0VUS3ZIY1FlUFViT0dBaz0=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("ODYxNjlAMzEzNzJlMzEyZTMwSUZoWlA3bjFLTTNva29zazZCdEx6M1h5dUllK1Y5QmhzY0NjcGxjRncrUT0=");
             InitializeComponent();
 
             MainPage = new HamburgerMenu();
