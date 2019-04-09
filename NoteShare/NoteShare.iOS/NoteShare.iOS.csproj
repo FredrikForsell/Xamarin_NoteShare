@@ -158,6 +158,9 @@
     <PackageReference Include="SuaveControls.FloatingActionButton">
       <Version>2018.1.5</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>17.1.0.38</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>17.1.0.38</Version>
     </PackageReference>
