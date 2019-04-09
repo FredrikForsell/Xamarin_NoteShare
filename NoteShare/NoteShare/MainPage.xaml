@@ -1,30 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-    
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NoteShare.MainPage"
             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-            xmlns:controls1="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
-            xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms">
-  <!--Pages can be added as references or inline-->
+            xmlns:controls1="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton">
+    <!--Pages can be added as references or inline-->
+
+    <ContentPage.ToolbarItems>
+        <!--   Toolbar items
+        <ToolbarItem Icon="search.png" 
+                     Text="Notes" 
+                     />
+        <ToolbarItem Icon="search.png" 
+                     Text="Todo" 
+                     />
+        
+        -->
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>
-        
+
         <Style TargetType="Frame">
             <Setter Property="Padding" Value="2"></Setter>
-            <Setter Property="BackgroundColor" Value="#674F6F84"></Setter> <!-- first 2 numbers in hex sets opacity-->
-            <Setter Property="BorderColor" Value="Black"></Setter>
+            <Setter Property="BackgroundColor" Value="white"></Setter> <!-- first 2 numbers in hex sets opacity-->
+            <!--<Setter Property="BorderColor" Value="Black"></Setter>-->
+            <Setter Property="HasShadow" Value="False"></Setter>
             <Setter Property="CornerRadius" Value="0"></Setter>
-            <Setter Property="Margin" Value="0,2,2,2"></Setter>
+            <Setter Property="Margin" Value="0,0,8,4"></Setter>
         </Style>
 
         <Style TargetType="controls:CircleImage">
-            <Setter Property="HeightRequest" Value="200"></Setter>
-            <Setter Property="WidthRequest" Value="50"></Setter>
+            <Setter Property="HeightRequest" Value="25"></Setter>
+            <Setter Property="WidthRequest" Value="25"></Setter>
+            <Setter Property="Margin" Value="2"></Setter>
             <Setter Property="Aspect" Value="AspectFill"></Setter>
             <Setter Property="BorderColor" Value="#904F6F84"></Setter>
-            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="BorderThickness" Value="0.5"></Setter>
         </Style>
 
         <Style TargetType="Grid">
@@ -37,33 +50,36 @@
         <!--Pages can be added as references or inline-->
 
     <ContentPage.Content>
-
-        <!--Add tabview for future testing-->
-        <tabView:SfTabView BackgroundColor="Aqua">
-            <tabView:SfTabItem Title="Call">
-                <tabView:SfTabItem.Content>
-                    <Grid BackgroundColor="Red" x:Name="AllContactsGrid" />
-                    
-                </tabView:SfTabItem.Content>
-            </tabView:SfTabItem>
-            <tabView:SfTabItem Title="Favorites">
-                <tabView:SfTabItem.Content>
-                    <Grid BackgroundColor="Green" x:Name="FavoritesGrid" />
-                </tabView:SfTabItem.Content>
-            </tabView:SfTabItem>
-        </tabView:SfTabView>
-    </ContentPage.Content>
-
-    <Grid 
-            BackgroundColor="Transparent"
+        <Grid 
+            BackgroundColor="#4033566D"
             >
-        <!-- Add button for changing tab
-        
-        <StackLayout HorizontalOptions="CenterAndExpand">
-            <Button Text="Notes"></Button>
-            <Button Text="Todo"></Button>
-        </StackLayout>
-        -->
+
+            <!-- Add button for changing tab-->
+            <Grid VerticalOptions="FillAndExpand" 
+                  HorizontalOptions="FillAndExpand"
+                  
+                  >
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Notes"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand" 
+                        Grid.Row="0" Grid.Column="0" />
+
+                <Button Text="Todos"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand" 
+                        Grid.Row="0" Grid.Column="1" />
+            </Grid>
+
+
 
             <!--Item tapped is used to get Note of the current list-->
             <!--SwipeStarted is used to get access to the Note object of the swiped list-->
@@ -75,14 +91,13 @@
                                    AllowSwiping="True"
                                    SwipeStarted="NoteMenu_SwipeStarted"
                                    PropertyChanged="ListView_PropertyChanged"
-                                   AbsoluteLayout.LayoutFlags="PositionProportional"
-                                    AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                                   
                                    >
-              <!-- -->
-              <!--Setting up leftswipe-->
-              <syncfusion:SfListView.LeftSwipeTemplate>
-                <DataTemplate>
-                  <ViewCell>
+                <!-- -->
+                <!--Setting up leftswipe-->
+                <syncfusion:SfListView.LeftSwipeTemplate>
+                    <DataTemplate>
+                        <ViewCell>
                             <ContentView>
                                 <Grid 
                                       Margin="0,2,0,2" 
@@ -111,15 +126,15 @@
                                     </Grid>
                                 </Grid>
                             </ContentView>
-                  </ViewCell>
-                </DataTemplate>
-              </syncfusion:SfListView.LeftSwipeTemplate>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.LeftSwipeTemplate>
 
-              
-              
-              <!--Setting up NoteItems-->
-              <syncfusion:SfListView.ItemTemplate>
-                <DataTemplate>
+
+
+                <!--Setting up NoteItems-->
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
 
                         <ViewCell>
 
@@ -129,14 +144,14 @@
                                     <!-- Frame with corners-->
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100" />
-                                            <ColumnDefinition Width="300" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition Width="320" />
                                         </Grid.ColumnDefinitions>
 
 
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="50"/>
-                                            <RowDefinition Height="50"/>
+                                            <RowDefinition Height="20"/>
+                                            <RowDefinition Height="40"/>
                                         </Grid.RowDefinitions>
 
 
@@ -151,7 +166,7 @@
                                         <!-- Row:0      Column:1-->
                                         <Grid Grid.Column="1" Grid.Row="0" Padding="10,0,0,0">
 
-                                            <Label Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="White"/>
+                                            <Label Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
 
                                         </Grid>
 
@@ -159,15 +174,17 @@
                                         <!-- Row:1      Column:1-->
                                         <Grid Grid.Column="1" Grid.Row="1" Padding="10,0,0,0">
 
-                                            <Label Text="{Binding Description}" FontSize="Small" TextColor="White" />
+                                            <Label Text="{Binding Description}" FontSize="Small" TextColor="Black" />
 
                                         </Grid>
                                     </Grid>
+
                                 </Frame>
+
                             </ContentView>
                         </ViewCell>
                     </DataTemplate>
-              </syncfusion:SfListView.ItemTemplate>
+                </syncfusion:SfListView.ItemTemplate>
             </syncfusion:SfListView>
 
             <controls1:FloatingActionButton x:Name="FAB" 
@@ -180,23 +197,5 @@
                                            AbsoluteLayout.LayoutFlags="PositionProportional"
                                            AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"/>
         </Grid>
-
-                    
-
-
-
-
-
-
-
-
-
-                        <!-- Management Tab
-    <ContentPage Title="ToDo" BackgroundColor="#674F6F84">
-
-        
-
-
-    </ContentPage>-->
-
+    </ContentPage.Content>
 </ContentPage>
