@@ -3,22 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             xmlns:syncfusion1="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="NoteShare.NoteView">
     <ContentPage.Resources>
         <Style TargetType="Frame">
             <Setter Property="Padding" Value="2"></Setter>
-            <Setter Property="BackgroundColor" Value="white"></Setter>
-            <!-- first 2 numbers in hex sets opacity-->
-            <!--<Setter Property="BorderColor" Value="Black"></Setter>-->
+            <Setter Property="BackgroundColor" Value="White"></Setter>
+            <!-- #4033566D first 2 numbers in hex sets opacity-->
+            <!-- <Setter Property="BorderColor" Value="Black"></Setter> -->
             <Setter Property="HasShadow" Value="False"></Setter>
             <Setter Property="CornerRadius" Value="0"></Setter>
-            <Setter Property="Margin" Value="0,0,8,4"></Setter>
+            <Setter Property="Margin" Value="0,0,8,2"></Setter>
             <Setter Property="Padding" Value="8, 4, 8, 4"></Setter>
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid
-            BackgroundColor="#4033566D">
+            BackgroundColor="#904F6F84">
             
             <syncfusion:SfListView BackgroundColor="Transparent" 
                                    x:Name="noteMenu"
@@ -28,6 +29,7 @@
                                    AbsoluteLayout.LayoutFlags="PositionProportional"
                                     AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
                                    SwipeStarted="NoteMenu_SwipeStarted"
+                                   DragStartMode="OnHold"
                                    >
 
                 <!--ListView leftswipe-->
@@ -35,36 +37,38 @@
                     <DataTemplate>
                         <ViewCell>
                             <ContentView>
-                                <Grid 
-                                      Margin="0,2,0,2" 
-                                      Padding="0">
-                                    <Grid Grid.Column ="0" Padding="0,0,0,0">
+                                <Frame Margin="0,0,0,2"> <!--Override margin so that it does not have right margin-->
+                                    <Grid>
+                                        <Grid Grid.Column ="0" Padding="0,0,0,0">
 
-                                        <Image Source ="delete.png">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer 
+                                            <Image Source ="delete.png">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer 
                                         Tapped="OnTapDelete"/>
-                                            </Image.GestureRecognizers>
-                                        </Image>
+                                                </Image.GestureRecognizers>
+                                            </Image>
 
-                                    </Grid>
+                                        </Grid>
 
 
-                                    <Grid Grid.Column ="1" Padding="0,0,0,0">
+                                        <Grid Grid.Column ="1" Padding="0,0,0,0">
 
-                                        <Image Source ="settings.png">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer 
+                                            <Image Source ="settings.png">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer 
                                         Tapped="OnTapEditListItem"/>
-                                            </Image.GestureRecognizers>
-                                        </Image>
+                                                </Image.GestureRecognizers>
+                                            </Image>
 
+                                        </Grid>
                                     </Grid>
-                                </Grid>
+                                </Frame>
                             </ContentView>
                         </ViewCell>
                     </DataTemplate>
                 </syncfusion:SfListView.LeftSwipeTemplate>
+                
+                
                 
                 <!--ListView Item template-->
 
@@ -73,14 +77,32 @@
 
                     <ViewCell>
 
-                        <ContentView>
+                            <ContentView>
 
-                                <Frame x:Name="listItem">
-                                    <!-- Frame with corners-->
-                                    <Label Text="{Binding NoteItem}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+                                <Frame>
 
+
+                                    <Grid x:Name="listItem">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="auto"/>
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <syncfusion1:SfCheckBox x:Name="checkBox"
+                                                            Grid.Column="0"/>
+
+
+                                        <Label Text="{Binding NoteItem}" 
+                                           Grid.Column="1"
+                                           FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
+
+
+
+
+                                    </Grid>
                                 </Frame>
-                        </ContentView>
+                            </ContentView>
                     </ViewCell>
                 </DataTemplate>
             </syncfusion:SfListView.ItemTemplate>
