@@ -99,32 +99,36 @@
                     <DataTemplate>
                         <ViewCell>
                             <ContentView>
-                                <Grid 
+                                <Frame Margin="0,0,0,4">
+
+
+                                    <Grid 
                                       Margin="0,2,0,2" 
                                       Padding="0">
-                                    <Grid Grid.Column ="0" Padding="0,20,0,10">
+                                        <Grid Grid.Column ="0" Padding="0,10,0,10">
 
-                                        <Image Source ="delete.png">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer 
+                                            <Image Source ="delete.png">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer 
                                         Tapped="OnTapDelete"/>
-                                            </Image.GestureRecognizers>
-                                        </Image>
+                                                </Image.GestureRecognizers>
+                                            </Image>
 
-                                    </Grid>
+                                        </Grid>
 
 
-                                    <Grid Grid.Column ="1" Padding="0,20,0,10">
+                                        <Grid Grid.Column ="1" Padding="0,10,0,10">
 
-                                        <Image Source ="settings.png">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer 
+                                            <Image Source ="settings.png">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer 
                                         Tapped="OnTapEditListItem"/>
-                                            </Image.GestureRecognizers>
-                                        </Image>
+                                                </Image.GestureRecognizers>
+                                            </Image>
 
+                                        </Grid>
                                     </Grid>
-                                </Grid>
+                                </Frame>
                             </ContentView>
                         </ViewCell>
                     </DataTemplate>
