@@ -20,18 +20,22 @@ namespace NoteShare
         IEnumerable<NoteContent> noteContents;
         NoteContentDataAccess noteDB = new NoteContentDataAccess();
         int elementid;
+        string description;
         NoteContent swipedItem;
 
 
-        public NoteView(int elementid, string title)
+        public NoteView(int elementid, string title,string description, string icon)
         {
             this.elementid = elementid;
+            Title = title;
+
             InitializeComponent();
 
             noteDB = new NoteContentDataAccess();
             updateList();
+            this.description = description;
 
-            Title = title;
+
 
             MessagingCenter.Subscribe<App>((App)Application.Current, "OnSaveNote", (sender) => {
                 updateList();
