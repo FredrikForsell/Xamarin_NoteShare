@@ -24,6 +24,7 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
     <PackageReference Include="SuaveControls.FloatingActionButton" Version="2018.1.5" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.1.0.40" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.1.0.38" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.1.0.38" />
     <PackageReference Include="TEditor" Version="1.0.3" />

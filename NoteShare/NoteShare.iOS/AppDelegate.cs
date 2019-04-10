@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using SuaveControls.FloatingActionButton.iOS.Renderers;
+using Syncfusion.XForms.iOS.Buttons;
 using UIKit;
 
 namespace NoteShare.iOS
@@ -28,6 +29,9 @@ namespace NoteShare.iOS
 
             //Floating button init
             FloatingActionButtonRenderer.InitRenderer();
+
+            //SfButton init
+            SfCheckBoxRenderer.Init();
 
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
